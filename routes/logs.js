@@ -54,4 +54,34 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// @route		PUT api/logs
+// @desc		Delete a log item
+// @access	Public
+
+router.put('/:id', async (req, res) => {
+  const { message, attention, tech, date } = req.body;
+
+  const logFields = {};
+
+  if (message) logFields.message = message;
+  if (attention) logFields.attention = attention;
+  if (tech) logFields.tech = tech;
+  if (date) logFields.date = date;
+
+  try {
+    let log = await Logs.findById(req.params.id);
+    if (!log) return res.status(404).json({ msg: 'Log not found' });
+
+    log = await Logs.findByIdAndUpdate(
+      req.params.id,
+      { $set: logFields },
+      { new: true }
+    );
+
+    res.json(log);
+  } catch (err) {
+    res.status(500).send('Server error');
+  }
+});
+
 module.exports = router;
