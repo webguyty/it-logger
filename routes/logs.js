@@ -30,7 +30,6 @@ router.post('/', async (req, res) => {
     });
 
     const log = await newLog.save();
-
     res.json(log);
   } catch (err) {
     console.error(err);

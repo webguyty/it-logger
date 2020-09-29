@@ -31,12 +31,12 @@ export default (state = initialState, action) => {
         logs: [...state.logs, action.payload],
         loading: false,
       };
-    // case DELETE_LOG:
-    //   return {
-    //     ...state,
-    //     logs: state.logs.filter((log) => log.id !== action.payload),
-    //     loading: false,
-    //   };
+    case DELETE_LOG:
+      return {
+        ...state,
+        logs: state.logs.filter((log) => log._id !== action.payload),
+        loading: false,
+      };
     // case UPDATE_LOG:
     //   return {
     //     ...state,

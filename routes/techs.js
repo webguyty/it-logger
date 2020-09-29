@@ -3,8 +3,8 @@ const router = express.Router();
 
 const Techs = require('../models/Techs');
 
-// @route		GET api/logs
-// @desc		Get all logs
+// @route		GET api/techs
+// @desc		Get all techs
 // @access 	Public
 router.get('/', async (req, res) => {
   try {
@@ -16,8 +16,8 @@ router.get('/', async (req, res) => {
   }
 });
 
-// @route		POST api/logs
-// @desc		Create a log item
+// @route		POST api/techs
+// @desc		Create a tech
 // @access	Public
 router.post('/', async (req, res) => {
   try {
@@ -33,6 +33,23 @@ router.post('/', async (req, res) => {
     res.json(tech);
   } catch (err) {
     console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
+// @route		DELETE api/techs
+// @desc		Delete a tech
+// @access	Public
+
+router.delete('/:id', async (req, res) => {
+  try {
+    let tech = await Techs.findById(req.params.id);
+    if (!tech) return res.status(404).json({ msg: 'Log not found' });
+
+    await Techs.findByIdAndRemove(req.params.id);
+
+    res.json({ msg: 'Log Deleted' });
+  } catch (err) {
     res.status(500).send('Server error');
   }
 });

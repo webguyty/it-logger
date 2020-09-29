@@ -28,7 +28,7 @@ const AddLogModal = ({ addLog }) => {
       // Clear all fields
       setMessage('');
       setTech('');
-      setAttention('');
+      setAttention(false);
     }
   };
 
