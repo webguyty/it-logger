@@ -48,7 +48,7 @@ router.delete('/:id', async (req, res) => {
 
     await Techs.findByIdAndRemove(req.params.id);
 
-    res.json({ msg: 'Log Deleted' });
+    res.json({ msg: 'Tech Deleted' });
   } catch (err) {
     res.status(500).send('Server error');
   }
