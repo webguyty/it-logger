@@ -1,5 +1,5 @@
 {
-  "name": "it-logger",
+  "name": "itlogger",
   "version": "1.0.0",
   "description": "IT Logger",
   "main": "server.js",
@@ -20,7 +20,6 @@
   "bugs": {
     "url": "https://github.com/webguyty/it-logger/issues"
   },
-  "homepage": "https://github.com/webguyty/it-logger#readme",
   "dependencies": {
     "config": "^3.3.2",
     "express": "^4.17.1",
