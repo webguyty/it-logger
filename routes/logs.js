@@ -84,4 +84,23 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+// @route		GET api/logs/search
+// @desc		Search and get selected logs
+// @access 	Public
+router.get('/search/:str', async (req, res) => {
+  try {
+    // res.send(req.params.str);
+    const logs = await Logs.find({
+      $or: [
+        { message: { $regex: req.params.str, $options: 'i' } },
+        { tech: { $regex: req.params.str, $options: 'i' } },
+      ],
+    });
+    res.json(logs);
+  } catch (error) {
+    console.error(error.msg);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;

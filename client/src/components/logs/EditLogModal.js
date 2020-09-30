@@ -36,7 +36,7 @@ const EditLogModal = ({ current, updateLog }) => {
       // Clear Fields
       setMessage('');
       setTech('');
-      setAttention('');
+      // setAttention('');
     }
   };
 

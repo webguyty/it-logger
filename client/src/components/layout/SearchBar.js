@@ -1,15 +1,24 @@
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import { searchLogs } from '../../actions/logActions';
+import { searchLogs, getLogs } from '../../actions/logActions';
 
-// const SearchBar = ({ searchLogs }) => {
-const SearchBar = ({}) => {
+const SearchBar = ({ searchLogs, getLogs }) => {
   const text = useRef('');
 
   const onChange = (e) => {
-    // searchLogs(text.current.value);
+    if (text.current.value === '') {
+      getLogs();
+    } else {
+      searchLogs(text.current.value);
+    }
   };
+
+  const onClose = (e) => {
+    text.current.value = '';
+    getLogs();
+  };
+
   return (
     <nav style={{ marginBottom: '30px' }} className='blue'>
       <div className='nav-wrapper'>
@@ -26,7 +35,9 @@ const SearchBar = ({}) => {
             <label className='label-icon' htmlFor='search'>
               <i className='material-icons'>search</i>
             </label>
-            <i className='material-icons'>close</i>
+            <i className='material-icons' onClick={onClose}>
+              close
+            </i>
           </div>
         </form>
       </div>
@@ -35,8 +46,8 @@ const SearchBar = ({}) => {
 };
 
 SearchBar.propTypes = {
-  // searchLogs: PropTypes.func.isRequired,
+  searchLogs: PropTypes.func.isRequired,
+  getLogs: PropTypes.func.isRequired,
 };
 
-// export default connect(null, { searchLogs })(SearchBar);
-export default connect(null, {})(SearchBar);
+export default connect(null, { searchLogs, getLogs })(SearchBar);
