@@ -10,6 +10,8 @@ connectDB();
 // Init Middlware
 app.use(express.json({ extended: false }));
 
+app.get('/', (req, res) => res.send('shit');
+
 // Define Routes
 app.use('/api/logs', require('./routes/logs'));
 app.use('/api/techs', require('./routes/techs'));
