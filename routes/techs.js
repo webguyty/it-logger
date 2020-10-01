@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const Techs = require('../models/Techs');
+const Techs = require('./models/Techs');
 
 // @route		GET api/techs
 // @desc		Get all techs

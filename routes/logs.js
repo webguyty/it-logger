@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const Logs = require('../models/Logs');
+const Logs = require('./models/Logs');
 
 // @route		GET api/logs
 // @desc		Get all logs
